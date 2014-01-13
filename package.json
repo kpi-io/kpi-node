@@ -1,0 +1,32 @@
+{
+  "name": "kpi-node",
+  "description": "KPI.IO Node.js client",
+  "version": "0.0.5",
+  "private": false,
+  "dependencies": {
+    "request": "~2.30.0"
+  },
+  "devDependencies": {
+    "vows": "~0.7.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/kpi-io/kpi-node.git"
+  },
+  "contributors": [
+    "Onur Ünlü <unluonur@gmail.com>"
+  ],
+  "main": "index.js",
+  "directories": {
+    "test": "test"
+  },
+  "scripts": {
+    "test": "vows test/*.js"
+  },
+  "author": "unluonur",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/kpi-io/kpi-node/issues"
+  },
+  "homepage": "https://github.com/kpi-io/kpi-node"
+}
