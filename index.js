@@ -26,7 +26,7 @@ var Client = function(api_key, baseUrl) {
 	this.baseUrl = baseUrl||KPI.baseUrl;
 };
 Client.prototype._send = function(method, url, params, body, callback) {
-	return request({
+	request({
 		uri: this.baseUrl+url,
 		method: method,
 		qs: params,
@@ -75,9 +75,46 @@ var Project = function(options) {
   this.readClient = new Client(options.readKey, baseUrl);
   this.writeClient = new Client(options.writeKey, baseUrl);
 };
-Project.prototype.addData = function(collection, data, callback) {
+
+Project.prototype.add =  Project.prototype.addData = function(collection, data, callback) {
   this.writeClient.post('/collections/'+collection+'/data', null, data, callback);
 };
+
+Project.prototype.update = function(collection, set, where, multi, callback) {
+	if(typeof multi === 'function') {
+		callback = multi;
+		multi = false;
+	}
+  this.projectClient.put('/collections/'+collection+'/data', {
+  	'collection': collection,
+  	'filter': JSON.stringify(where),
+  	'multi': JSON.stringify(!!multi)
+  }, set, callback);
+};
+
+Project.prototype.del = function(collection, where, multi, callback) {
+	if(typeof multi === 'function') {
+		callback = multi;
+		multi = false;
+	}
+  this.projectClient.del('/collections/'+collection+'/data', {
+  	'collection': collection,
+  	'filter': JSON.stringify(where),
+  	'multi': JSON.stringify(!!multi)
+  }, callback);
+};
+
+Project.prototype.select = function(expression, collection, where, callback) {
+  this.readClient.get('/queries/advancedQuery', {
+  	'q': JSON.stringify({
+  		'select': expression,
+    	'from': collection,
+    	'where': where
+    })
+  }, callback);
+};
+
+
 
 KPI.Client = Client;
 KPI.Project = Project;
