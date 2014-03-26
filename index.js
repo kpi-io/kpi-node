@@ -26,6 +26,11 @@ var Client = function(api_key, baseUrl) {
 	this.baseUrl = baseUrl||KPI.baseUrl;
 };
 Client.prototype._send = function(method, url, params, body, callback) {
+	callback = callback||function(err){
+		if(err) {
+			console.log(err);
+		}
+	};
 	request({
 		uri: this.baseUrl+url,
 		method: method,
