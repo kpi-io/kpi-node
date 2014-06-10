@@ -1,10 +1,10 @@
 {
   "name": "kpi-node",
   "description": "KPI.IO Node.js client",
-  "version": "0.1.1",
+  "version": "0.2.0",
   "private": false,
   "dependencies": {
-    "request": "^2.34.0"
+    "request": "^2.36.0"
   },
   "devDependencies": {
     "vows": "~0.7.0"
@@ -16,7 +16,7 @@
   "contributors": [
     "Onur Ünlü <unluonur@gmail.com>"
   ],
-  "main": "index.js",
+  "main": "lib/index.js",
   "directories": {
     "test": "test"
   },
